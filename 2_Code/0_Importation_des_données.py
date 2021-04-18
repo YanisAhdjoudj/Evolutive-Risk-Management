@@ -50,7 +50,7 @@ end_date="2021-01-01"
 
 ########################################################################################
 
-def get_stock(stock, start, end , value: Union[str , list], index_as_date="True"):
+def get_stock(stock, start, end , value: Union[str , list], index_as_date=True):
     """
     Parameters
     ----------
@@ -73,7 +73,7 @@ def get_stock(stock, start, end , value: Union[str , list], index_as_date="True"
     
     serie = yf.download(stock , start = start , end = end)
     
-    if index_as_date:
+    if index_as_date == True:
         serie = serie[value]
         serie.index = serie.index.to_period('d')
     else:
@@ -84,7 +84,7 @@ def get_stock(stock, start, end , value: Union[str , list], index_as_date="True"
 
 ########################################################################################
 
-def get_multiple_stock(tickers, start, end, value: Union[str , list], index_as_date="True"):
+def get_multiple_stock(tickers, start, end, value: Union[str , list], index_as_date=True):
     """
 
     Parameters
@@ -119,13 +119,55 @@ def get_multiple_stock(tickers, start, end, value: Union[str , list], index_as_d
 
 #########################################################################################
 
+def get_returns(df_stocks):
+    """
+    
+    Parameters
+    ----------
+    df_stocks : pd.DataFrame
+        Dataframe with stocks value
 
-# Application
+    Returns
+    -------
+    returns_df : pd.DataFrame
+        Dataframe with stocks returns
 
-df_stocks=get_multiple_stock(tickers=ticker_list,start=start_date, end=end_date , value = 'Open')
+    """
 
-# Exportation
+    list_returns=[]
+    
+    for ticker in df_stocks.columns:
+        
+        serie_return= df_stocks[ticker].pct_change()
+        list_returns.append(serie_return)
+    
+    returns_df=pd.concat(list_returns, axis=1)
+    returns_df.columns = df_stocks.columns
+    
+    returns_df = returns_df.iloc[1: , :]
+    
+    return returns_df
+
+#########################################################################################
+
+
+# Application pour les valeurs
+
+df_stocks=get_multiple_stock(tickers=ticker_list,start=start_date, end=end_date , value = 'Open',index_as_date=True)
+
+# Exportation des valeurs
 
 df_stocks.to_csv(r"C:\Users\yanis\01 Projets\01 Python Projects\Projet_RiskManagment\Projet_RiskManagement\3_Données\stocks_data.csv",sep=';',header=True,index=True)
 
- 
+
+
+# Calcul des rendements
+
+df_returns=get_returns(df_stocks)
+
+# Exportation des rendements
+
+df_returns.to_csv(r"C:\Users\yanis\01 Projets\01 Python Projects\Projet_RiskManagment\Projet_RiskManagement\3_Données\stocks_returns_data.csv",sep=';',header=True,index=True)
+
+
+

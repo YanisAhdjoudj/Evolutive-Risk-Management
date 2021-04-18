@@ -35,3 +35,8 @@ Elles sont collectées grâce au package yfinance qui récupere les données
 sur le site de Yahoo Finance.
 
 Les valeurs sont journalières, à l'ouverture de la bourse, du 01-01-2017 au 01-01-2021.
+
+
+Dans le fichier "stocks_data.csv" on retrouve les valeurs des actions;
+
+Dans le fichier "stocks_returns_data.csv" on retrouve les rendements de ces mêmes actions.
