@@ -1,1 +1,37 @@
 Info sur les données :
+
+
+Nous devons choisir 20 actions pour notre projet
+
+Nous décidons de prendre uniquement des actions américaines car cela nous évite 
+d'avoir à géré le risque de change (en nous considérant comme des investisseurs
+américains) de plus elles sont plus nombreuses et diversifiées ce qui nous offre
+une plus grande liberté de choix
+
+Afin d'avoir un portefeuille diversifié nous décidons de choisir des actions
+de différents secteurs :
+  
+
+Information Technology : Google(GOOGL), Facebook (FB), Apple(AAPL), Amazon(AMZN)
+
+Retail : Walmart(WMT), Costco (COST)
+
+Food : The Coca-Cola Company (KO), McDonald's(MCD)
+
+Financials : BlackRock(BLK), JPMorgan Chase & Co(JPM), Berkshire Hathaway(BRK.A)
+
+Industrials : Builders FirstSource Inc (BLDR), General Motors(GM), Tesla(TSLA),
+              Union Pacific(UNP)
+
+Healthcare and Biotech: Pfizer(PFE), Heron Therapeutics(HRTX)
+  
+Energy : ExxonMobil(XOM), Chevron(CVX), Plug Power(PLUG)
+
+
+Pour toutes ces actions les données sont récupéré avec le programme :
+"Importation_des_données.py"
+
+Elles sont collectées grâce au package yfinance qui récupere les données
+sur le site de Yahoo Finance.
+
+Les valeurs sont journalières, à l'ouverture de la bourse, du 01-01-2017 au 01-01-2021.
